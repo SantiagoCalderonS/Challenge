@@ -9,7 +9,7 @@ module.exports= (dataBase)=>{
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        nombre: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -21,7 +21,7 @@ module.exports= (dataBase)=>{
 
         fecha: {
             type: DataTypes.DATE,
-            defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
+            defaultValue: dataBase.literal("CURRENT_TIMESTAMP"),
         },
 
         lenguajes:{

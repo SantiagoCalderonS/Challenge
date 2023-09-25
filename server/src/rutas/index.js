@@ -7,6 +7,6 @@ router.use("/", enviar_router )
 
 router.use("/respuestas", respuestas_router)
 
-router.use("/client", cliente_router)
+router.use("/cliente", cliente_router)
 
 module.exports = router;

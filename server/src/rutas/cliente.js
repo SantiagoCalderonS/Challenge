@@ -1,6 +1,8 @@
 const cliente_router = require("express").Router();
 
-cliente_router.post("/", (req,res)=>{} )
+const {post_client} = require("../controladores/control_cliente");
+
+cliente_router.post("/", post_client )
 
 cliente_router.get("/", (req,res)=>{})
 

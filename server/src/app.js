@@ -6,6 +6,7 @@ const router= require("./rutas/index");
 
 app.use(cors())
 app.use(morgan("dev"))
+app.use(express.json())
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");         // permite conexion de cualquier direccion 
