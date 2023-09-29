@@ -6,7 +6,7 @@ import Inicio from './componentes/inicio/inicio';
 import Listado from './componentes/listado_participantes/listado';
 import axios from 'axios';
 import { useDispatch, useSelector} from "react-redux";
-import { inputs } from './redux/actions';
+import { inputs, dar_permiso } from './redux/actions';
 
 
 function App() {
@@ -20,7 +20,6 @@ function App() {
 
       dispatch(inputs(data))
 
-      console.log(data)
 
     } catch (error) {
       setError(!errorEXE)
@@ -30,9 +29,14 @@ function App() {
 
   useEffect(()=>{
     obtener_json()
-    JSON.parse(localStorage.getItem("permiso")).ID ? localStorage.setItem("permiso", JSON.stringify({permiso: false, ID: ""})):""
-    
-    console.log(JSON.parse(localStorage.getItem("permiso")))
+    const local = JSON.parse(localStorage.getItem("permiso"))
+    if(!local.ID){
+      localStorage.setItem("permiso", JSON.stringify({permiso: false, ID: ""}))
+      dispatch(dar_permiso(false))
+    }else{
+      dispatch(dar_permiso(JSON.parse(localStorage.getItem("permiso")).permiso))
+    }
+  
   }, [])
 
   if(!errorEXE){

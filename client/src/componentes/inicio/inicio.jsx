@@ -4,32 +4,38 @@ import { useSelector } from "react-redux";
 import Input from "../input/input"; 
 
 const Inicio = () => {
-    const [acceso, setAcceso] = useState(true) ;
+    const [acceso, setAcceso] = useState(false) ;
     const inputs = useSelector((state)=> state.inputs)
+    const permiso = useSelector((state)=> state.permiso_redux)
+    const info = useSelector((state)=> state.info)
 
-    async function dar_acceso () {
-         const Acc = await JSON.parse(localStorage.getItem("permiso"))
-        setAcceso(Acc)
-        console.log(Acc.ID)
+    function dar_acceso () {
+        console.log(permiso)
+        setAcceso(permiso)
+        console.log("AAAAAAAAAAAAAA")
     }
 
     useEffect(()=>{
        dar_acceso()
         
-    },[])
-console.log(inputs)
+    },[permiso])
+
+console.log(info)
     return(
         <div>
-            { acceso? (
+            { !acceso? (
                 <div>
+                    <form>
                     {inputs?.items?.map((I)=>{
                         return(
                             <Input I={I}/>
                         )
                     })}
+                    </form>
             </div>
             )
             : (<h1>dssvdd</h1>) }
+    
         </div>
     )
 }

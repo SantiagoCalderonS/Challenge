@@ -15,7 +15,7 @@ module.exports= (dataBase)=>{
         },
 
         celular:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.BIGINT,
             allowNull: false
         },
 
@@ -24,13 +24,13 @@ module.exports= (dataBase)=>{
             defaultValue: dataBase.literal("CURRENT_TIMESTAMP"),
         },
 
-        lenguajes:{
-            type: DataTypes.ARRAY(DataTypes.STRING),
+        lenguaje:{
+            type: DataTypes.STRING,
             allowNull: false
           },
         
         informante:{
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.STRING,
             allowNull: false
         },
 

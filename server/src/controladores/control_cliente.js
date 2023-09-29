@@ -2,10 +2,11 @@ const {Encuestado} = require("../../base_datos")
 
 const post_client = async (req, res) =>{
     
-    const {nombre, celular, fecha, lenguajes, informante, confirmacion } = req.body
-    console.log(celular, lenguajes[0], informante[0])
-    try {
+    const {nombre, celular, fecha, lenguaje, informante, confirmacion } = req.body
 
+    
+    try {
+    if(nombre && celular && lenguaje && informante ){
         const [new_Encuestado, created] = await Encuestado.findOrCreate(
             { 
                 where: { celular} ,
@@ -13,7 +14,7 @@ const post_client = async (req, res) =>{
                     nombre:nombre,
                     celular: celular,
                     fecha: fecha, 
-                    lenguajes: lenguajes, 
+                    lenguaje: lenguaje, 
                     informante:informante, 
                     confirmacion:confirmacion
                 }
@@ -30,12 +31,16 @@ const post_client = async (req, res) =>{
                 permiso: true
             })
         }
+    }else{
+        res.status(404).json({mensaje:"datos insuficientes"})
+    }
 
     } catch (error) {
 
         res.status(404).send(error.message)
 
     }
+
 }
 
 const put_client = async (req, res) =>{//esto no sera accesible sin el "permiso" del post
