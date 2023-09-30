@@ -8,11 +8,12 @@ const Inicio = () => {
     const inputs = useSelector((state)=> state.inputs)
     const permiso = useSelector((state)=> state.permiso_redux)
     const info = useSelector((state)=> state.info)
+    const usuario = useSelector((state)=> state.usuario)
+
 
     function dar_acceso () {
         console.log(permiso)
         setAcceso(permiso)
-        console.log("AAAAAAAAAAAAAA")
     }
 
     useEffect(()=>{
@@ -34,7 +35,7 @@ console.log(info)
                     </form>
             </div>
             )
-            : (<h1>dssvdd</h1>) }
+            : (<h1>{usuario?.nombre}</h1>) }
     
         </div>
     )

@@ -1,8 +1,24 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { conseguir_listado } from "../../redux/actions";
 
 const Listado = () => {
+
+    const listado = useSelector((state)=> state.listado)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(conseguir_listado())
+    },[])
+
     return( 
         <div>
-            <h1>listado</h1>
+            {listado.map((L)=>{
+                return(
+                     <h1>{L.nombre}</h1>
+                )
+            })}
+           
         </div>
     )
 }

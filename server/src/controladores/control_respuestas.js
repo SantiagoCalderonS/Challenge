@@ -13,7 +13,7 @@ const get_respuestas = async (req, res) =>{//esto no sera accesible sin el "perm
 
             res.json({
                 mensaje: "Participante ",
-                cambiado: Encuestado_id
+            usuario: Encuestado_id
             })
 
     } catch (error) {

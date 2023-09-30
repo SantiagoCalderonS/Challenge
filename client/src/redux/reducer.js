@@ -10,6 +10,8 @@ const initialState= {
         confirmacion: true
     },
     error: false,
+    usuario: {},
+    listado: []
     }
 
 export default function reducer ( state = initialState, actions) {
@@ -26,7 +28,13 @@ export default function reducer ( state = initialState, actions) {
             return {...state, info: {...state.info, [`${actions.payload.prop}`] : actions.payload.value } }
         
         case 'ERROR':
-            return {...state, error: actions.payload}
+            return {...state, error: actions.payload};
+        
+        case 'CONSEGUIR':
+            return {...state, usuario: actions.payload.usuario};
+
+        case "LISTADO":
+            return {...state, listado: actions.payload}
 
             //repasar funcion del default
             default: return {...state};

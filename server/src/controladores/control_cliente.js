@@ -74,9 +74,9 @@ const get_client = async (req, res) =>{
 
     try {
 
-        const Encuestados = await Encuestado.findAll()
+        const encuestados = await Encuestado.findAll()
 
-            res.json(Encuestados)
+            res.json({encuestados: encuestados})
 
     } catch (error) {
 
