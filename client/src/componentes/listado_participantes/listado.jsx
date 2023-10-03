@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { conseguir_listado } from "../../redux/actions";
+import Tarjeta from "../tarjeta/tarjeta";
 
 const Listado = () => {
 
@@ -15,7 +16,7 @@ const Listado = () => {
         <div>
             {listado.map((L)=>{
                 return(
-                     <h1>{L.nombre}</h1>
+                     <Tarjeta usuario={L}/>
                 )
             })}
            

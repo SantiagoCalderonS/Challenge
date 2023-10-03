@@ -1,7 +1,9 @@
 import axios from "axios"
 import { useState , useEffect} from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Input from "../input/input"; 
+import Tarjeta from "../tarjeta/tarjeta";
+import { dar_permiso } from "../../redux/actions";
 
 const Inicio = () => {
     const [acceso, setAcceso] = useState(false) ;
@@ -9,6 +11,7 @@ const Inicio = () => {
     const permiso = useSelector((state)=> state.permiso_redux)
     const info = useSelector((state)=> state.info)
     const usuario = useSelector((state)=> state.usuario)
+    const dispatch = useDispatch();
 
 
     function dar_acceso () {
@@ -16,12 +19,15 @@ const Inicio = () => {
         setAcceso(permiso)
     }
 
+    function boton () {
+        dispatch(dar_permiso(false))
+    }
+
     useEffect(()=>{
        dar_acceso()
         
     },[permiso])
 
-console.log(info)
     return(
         <div>
             { !acceso? (
@@ -35,7 +41,8 @@ console.log(info)
                     </form>
             </div>
             )
-            : (<h1>{usuario?.nombre}</h1>) }
+            : (<Tarjeta usuario={usuario}/>) }
+            <button onClick={boton}>CAMBIAR RESPUESTA</button>
     
         </div>
     )

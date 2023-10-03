@@ -60,7 +60,8 @@ const put_client = async (req, res) =>{//esto no sera accesible sin el "permiso"
 
             res.json({
                 mensaje: "Participante cambiado",
-                cambiado: Encuestado_id
+                cambiado: Encuestado_id,
+                permiso: true
             })
 
     } catch (error) {

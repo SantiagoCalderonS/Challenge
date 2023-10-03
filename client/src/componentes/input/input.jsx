@@ -8,6 +8,7 @@ const Input = ({I}) => {
     const [info, setinfo] = useState({nombre: ""})
     const informacion = useSelector((state)=>state.info)
     const dispatch = useDispatch()
+    const local = JSON.parse(localStorage.getItem("permiso"))
 
     const handler_info = (event) =>{
         switch(I.type){
@@ -57,12 +58,19 @@ const Input = ({I}) => {
 
     const subir = async (event)=>{
         event.preventDefault()
+        console.log(local)
         try {
-            const {data} = await axios.post("http://localhost:3001/cliente", info)
-            localStorage.setItem("permiso", JSON.stringify({permiso: true, ID: 1}))
-            console.log(data.permiso)
-            console.log(localStorage.getItem("permiso"))
+            if(local.ID === ""){
+                const {data} = await axios.post("http://localhost:3001/cliente", info)
+            localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: data.creado.id}))
             dispatch(dar_permiso(data.permiso))
+        }else{
+            const {data} = await axios.put(`http://localhost:3001/cliente?id=${local.ID}`, info)
+            localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: local.ID}))
+            dispatch(dar_permiso(data.permiso))
+        }
+            
+
         } catch (error) {
             console.log("alto ahi pana")
         }
