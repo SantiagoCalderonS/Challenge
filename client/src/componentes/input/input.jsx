@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { dar_info, dar_permiso } from "../../redux/actions"
+import { dar_info, dar_permiso, conseguir_usuario } from "../../redux/actions"
 import axios from "axios"
 
 const Input = ({I}) => {
@@ -36,7 +36,8 @@ const Input = ({I}) => {
                     value: event.target.value
                 }))
                 return;
-            case "ratio": 
+            case "radio": 
+            console.log(event.target.value)
                 dispatch( dar_info({
                     prop: "informante",
                     value: event.target.value
@@ -64,10 +65,12 @@ const Input = ({I}) => {
                 const {data} = await axios.post("http://localhost:3001/cliente", info)
             localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: data.creado.id}))
             dispatch(dar_permiso(data.permiso))
+            dispatch(conseguir_usuario(data.creado.id))
         }else{
             const {data} = await axios.put(`http://localhost:3001/cliente?id=${local.ID}`, info)
             localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: local.ID}))
             dispatch(dar_permiso(data.permiso))
+            dispatch(conseguir_usuario(local.ID))
         }
             
 

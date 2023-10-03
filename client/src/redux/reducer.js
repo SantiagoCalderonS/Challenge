@@ -7,7 +7,7 @@ const initialState= {
         fecha: null,
         lenguaje: "",
         informante: "ssds",
-        confirmacion: true
+        confirmacion: false
     },
     error: false,
     usuario: {},
@@ -35,6 +35,15 @@ export default function reducer ( state = initialState, actions) {
 
         case "LISTADO":
             return {...state, listado: actions.payload}
+
+        case "BORRAR_INFO":
+            return {...state, info: {
+                nombre: "",
+                celular: null,
+                fecha: null,
+                lenguaje: "",
+                informante: "ssds",
+                confirmacion: false}};
 
             //repasar funcion del default
             default: return {...state};

@@ -3,13 +3,13 @@ import { useState , useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Input from "../input/input"; 
 import Tarjeta from "../tarjeta/tarjeta";
-import { dar_permiso } from "../../redux/actions";
+import { dar_permiso, borrar_info } from "../../redux/actions";
+import style from "./inicio.module.css"
 
 const Inicio = () => {
     const [acceso, setAcceso] = useState(false) ;
     const inputs = useSelector((state)=> state.inputs)
     const permiso = useSelector((state)=> state.permiso_redux)
-    const info = useSelector((state)=> state.info)
     const usuario = useSelector((state)=> state.usuario)
     const dispatch = useDispatch();
 
@@ -20,6 +20,7 @@ const Inicio = () => {
     }
 
     function boton () {
+        dispatch(borrar_info())
         dispatch(dar_permiso(false))
     }
 
@@ -41,8 +42,10 @@ const Inicio = () => {
                     </form>
             </div>
             )
-            : (<Tarjeta usuario={usuario}/>) }
-            <button onClick={boton}>CAMBIAR RESPUESTA</button>
+            : (<div>
+                <Tarjeta usuario={usuario}/>
+                <button onClick={boton} className={style.boton}>CAMBIAR RESPUESTA</button>
+                </div>) }
     
         </div>
     )

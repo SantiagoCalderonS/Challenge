@@ -22,6 +22,13 @@ export const dar_info = (IN) =>{
     }
 }
 
+export const borrar_info = (IN) =>{
+    return{
+        type: "BORRAR_INFO",
+    }
+}
+
+
 export const dar_error = (E) =>{
     return{
         type: "ERROR",
