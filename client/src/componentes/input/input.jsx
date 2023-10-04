@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { dar_info, dar_permiso, conseguir_usuario } from "../../redux/actions"
 import axios from "axios"
+import style from "./input.module.css"
 
 const Input = ({I}) => {
     
@@ -63,12 +64,15 @@ const Input = ({I}) => {
         try {
             if(local.ID === ""){
                 const {data} = await axios.post("http://localhost:3001/cliente", info)
-            localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: data.creado.id}))
+            localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: data.usuario.id}))
             dispatch(dar_permiso(data.permiso))
-            dispatch(conseguir_usuario(data.creado.id))
+            data.mensaje === "Participante ya existente"? window.alert(data.mensaje):""
+            console.log(data)
+            dispatch(conseguir_usuario(data.usuario.id))
         }else{
             const {data} = await axios.put(`http://localhost:3001/cliente?id=${local.ID}`, info)
             localStorage.setItem("permiso", JSON.stringify({permiso: data.permiso, ID: local.ID}))
+            //localStorage.setItem("permiso", JSON.stringify({permiso:false, ID:""}))
             dispatch(dar_permiso(data.permiso))
             dispatch(conseguir_usuario(local.ID))
         }
@@ -82,12 +86,12 @@ const Input = ({I}) => {
 
 if(I.type === "select"){
     return(
-        <div style={{"marginTop": "10px", "width": "100%" }}>
-        <label>{I.label}</label>
-        <select name={I.name} onChange={handler_info}>
+        <div className={style.div}>
+        <label>{I.label} : </label>
+        <select className={style.input} name={I.name} onChange={handler_info}>
         {I.options.map((O)=>{
             return(
-                <option value={O.value}>{O.label}</option>
+                <option className={style.input} value={O.value}>{O.label}</option>
             )
         })}
         </select>
@@ -99,9 +103,9 @@ if(I.type === "select"){
         <div>
              {I.options.map((O)=>{
             return(
-            <div>
-                <input type={I.type} name={I.name} value={O.value} onChange={handler_info}/>
-                <label>{O.label}</label>
+            <div className={style.div}>
+                <input className={style.input} type={I.type} name={I.name} value={O.value} onChange={handler_info}/>
+                <label>{O.label} : </label>
                 <br/>
             </div>
             )
@@ -113,18 +117,18 @@ if(I.type === "select"){
 
 }else if(I.type !== "submit"){
      return( 
-        <div style={{"marginTop": "10px", "width": "100%" }}>
-            <label>{I.label}</label>
-            <input type={I.type} label={I.label} name={I.name} required={I.required} onChange={handler_info}></input>
+        <div className={style.div}>
+            <label>{I.label} : </label>
+            <input className={style.input} type={I.type} label={I.label} name={I.name} required={I.required} onChange={handler_info}></input>
         </div>
     )
 
 }else{
-    return( <div  style={{"marginTop": "10px", "width": "100%" }}>
+    return( <div className={style.div}>
         { info.nombre !== "" && info.celular !== null && info.date !== null && info.lenguaje !== "" && info.informante !== "" && info.confirmacion !== null ?
         (<div>
-            <label>{I.label}</label>
-            <input type={I.type} label={I.label} name={I.name} required={I.required} onClick={subir}></input>
+            <label>{I.label} : </label>
+            <input className={style.input} type={I.type} label={I.label} name={I.name} required={I.required} onClick={subir}></input>
         </div>) : ""}
         </div>
     )

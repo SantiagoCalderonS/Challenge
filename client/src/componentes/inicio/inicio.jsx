@@ -32,7 +32,7 @@ const Inicio = () => {
     return(
         <div>
             { !acceso? (
-                <div>
+                <div className={style.inicio}>
                     <form>
                     {inputs?.items?.map((I)=>{
                         return(

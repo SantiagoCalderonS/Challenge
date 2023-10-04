@@ -22,13 +22,14 @@ const post_client = async (req, res) =>{
 
         if(created){
             res.json({
-                creado:new_Encuestado,
+                usuario:new_Encuestado,
                 permiso: true
             });
         }else{
             res.json({
                 mensaje: "Participante ya existente",
-                permiso: true
+                permiso: true,
+                usuario: new_Encuestado
             })
         }
     }else{

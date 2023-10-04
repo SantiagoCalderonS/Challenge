@@ -1,0 +1,17 @@
+.input{
+    
+    background-color: rgb(183, 255, 219);
+    color: rgb(0, 85, 41);
+    border: solid 2px;
+    border-color:  rgb(0, 85, 41) ;
+    border-radius: 5px;
+    
+}
+
+.div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: larger;
+    text-shadow: 2px 2px 2px rgb(255, 90, 200);
+    
+}

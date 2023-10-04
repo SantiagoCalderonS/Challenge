@@ -12,35 +12,14 @@
     margin-bottom: 20px;
     box-shadow: 0 10px 10px 5px rgb(255, 90, 200);
 
-font-size: larger;
+font-size: large;
     text-shadow: 2px 2px 2px rgb(255, 90, 200);
 }
 
-/*all: initial; 
-all: unset;*/
-/*.tarjeta :hover { 
-    box-shadow: 0 1px rgb(58, 39, 0);
-    transform: translateY(2px);
+.tarjeta h1{
+    margin-top: 3%
 }
-.a{
-
+.tarjeta h2{
+    margin-top: 2%;
+    margin-bottom: 2%
 }
-
-.a h1{
-    box-shadow: none;
-    transform: none
-} 
-
-.a h2 {
-    box-shadow: none;
-    transform: none;
-}
-.a h1 :hover{
-    box-shadow: none;
-    transform: none
-} 
-
-.a h2 :hover{
-    box-shadow: none;
-    transform: none;
-}*/

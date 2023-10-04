@@ -7,12 +7,12 @@ const Tarjeta = ({usuario}) => {
     return(
         <div className={style.tarjeta}>
             <div className={style.a}>
-            <h1>{usuario.nombre}</h1>
-            <h2>{usuario.celular}</h2>
-            <h2>{usuario.fecha}</h2>
-            <h2>{usuario.lenguaje}</h2>
-            <h2>{usuario.informante}</h2>
-            <h2>{usuario.confirmacion}</h2>
+            <h1>NOMMBRE: {usuario.nombre}</h1>
+            <h2>TELEFONO: {usuario.celular}</h2>
+            <h2>HORA DE INICIO: {usuario.fecha}</h2>
+            <h2>LENGUAJE: {usuario.lenguaje}</h2>
+            <h2>RECOMENDACION: {usuario.informante}</h2>
+            <h2>NOTIFICAR: {usuario.confirmacion? "SI":"NO"}</h2>
             </div>
         </div>
     )
