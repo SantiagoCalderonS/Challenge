@@ -9,16 +9,20 @@ const get_respuestas = async (req, res) =>{//esto no sera accesible sin el "perm
     try {
 
         const Encuestado_id = await Encuestado.findByPk(id)
-        
 
-            res.json({
+        if(Encuestado_id !== null){
+             res.json({
                 mensaje: "Participante ",
             usuario: Encuestado_id
             })
 
+        }else{
+            throwError(error)
+        }
+           
     } catch (error) {
 
-        res.status(404).send(error.message + "sgbsr")
+        res.status(404).send(error.message)
 
     }
 }

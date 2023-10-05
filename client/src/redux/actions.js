@@ -46,7 +46,11 @@ export const conseguir_usuario = (ID) =>{
                 payload: data,
             });
         } catch (error) {
-          window.alert("akdjkdjsnca")
+         
+          return dispatch({
+            type: "ERROR",
+            payload: true
+        });
         }
     };
 }

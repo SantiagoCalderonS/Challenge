@@ -6,13 +6,13 @@ import Inicio from './componentes/inicio/inicio';
 import Listado from './componentes/listado_participantes/listado';
 import axios from 'axios';
 import { useDispatch, useSelector} from "react-redux";
-import { inputs, dar_permiso, conseguir_usuario } from './redux/actions';
+import { inputs, dar_permiso, conseguir_usuario, dar_error } from './redux/actions';
 
 
 function App() {
 
   const dispatch = useDispatch()
-  const [errorEXE, setError]= useState(false)
+  const errorEXE = useSelector((state)=> state.error)
 
   const obtener_json = async () =>{
     try {
@@ -22,7 +22,7 @@ function App() {
 
 
     } catch (error) {
-      setError(!errorEXE)
+      dar_error(true)
     }
     
   }
